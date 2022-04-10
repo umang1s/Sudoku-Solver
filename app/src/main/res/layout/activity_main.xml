@@ -32,6 +32,19 @@
         android:onClick="easyButtonClicked"
         android:layout_height="100dp"
         >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Easy"
+            android:textSize="20dp"/>
+
+        <ListView
+            android:id="@+id/easyListView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:visibility="invisible" />
 
 
 
