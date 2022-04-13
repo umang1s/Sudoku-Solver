@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Project/Android/SudokuSolver/app/src/main/res/drawable/ic_baseline_star_border_24.xml" value="0.1995" />
+        <entry key="..\:/Project/Android/SudokuSolver/app/src/main/res/drawable/ic_baseline_star_half_24.xml" value="0.1995" />
+        <entry key="..\:/Project/Android/SudokuSolver/app/src/main/res/drawable/level_shape.xml" value="0.258" />
         <entry key="..\:/Project/Android/SudokuSolver/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
+        <entry key="..\:/Project/Android/SudokuSolver/app/src/main/res/layout/activity_main_game.xml" value="0.27447916666666666" />
         <entry key="..\:/Project/Android/SudokuSolver/app/src/main/res/layout/level_button.xml" value="0.27447916666666666" />
+        <entry key="..\:/Project/Android/SudokuSolver/app/src/main/res/layout/star_layout.xml" value="0.27447916666666666" />
         <entry key="..\:/Project/Android/SudokuSolver2/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Project/Android/SudokuSolver2/app/src/main/res/layout/activity_main_game.xml" value="0.1265625" />
       </map>
