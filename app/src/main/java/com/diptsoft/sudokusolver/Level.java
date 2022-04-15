@@ -1,21 +1,26 @@
 package com.diptsoft.sudokusolver;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
     private String name;
-    private List<Sudoku> levels;
-    private double stars;
+    private ArrayList<Sudoku> levels;
+    private int stars;
     private boolean visible;
-    Level(String name,List<Sudoku> levels){
+    Level(String name){
         this.name=name;
-        this.levels=levels;
+        levels=new ArrayList<>();
         calStars();
         visible=false;
     }
 
+    public void addSudoku(Sudoku sudoku){
+        levels.add(sudoku);
+    }
+
     private  void calStars(){
-        stars=4.3;
+        stars=7;
     }
 
 
@@ -23,11 +28,11 @@ public class Level {
         return name;
     }
 
-    public List<Sudoku> getLevels() {
+    public ArrayList<Sudoku> getLevels() {
         return levels;
     }
 
-    public double getStars() {
+    public int getStars() {
         return stars;
     }
     public boolean getVisibility(){
