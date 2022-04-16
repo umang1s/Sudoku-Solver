@@ -7,31 +7,239 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <Button
         android:layout_width="match_parent"
-        android:clickable="true"
         android:background="#9fff894f"
-        android:onClick="solveYourOwn"
+        android:id="@+id/solve_own_btn"
         android:layout_height="100dp"
         android:layout_margin="20dp"
         android:padding="20dp"
+        android:onClick="launchEmptyGame"
+        android:textSize="20dp"
+        android:text="Solve Your Game" />
 
-        >
-        <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/easyButton"
+        android:layout_margin="20dp"
+        android:background="@drawable/level_shape"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:id="@+id/easyHeader"
+            android:clickable="true"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/easyText"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:textSize="20dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/easyStar1"
+                android:padding="5dp"
+                android:layout_toLeftOf="@+id/easyStar2"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/easyStar2"
+                android:layout_toLeftOf="@+id/easyStar3"
+                android:padding="5dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/easyStar3"
+                android:layout_toLeftOf="@+id/easyStar4"
+                android:padding="5dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/easyStar4"
+                android:layout_toLeftOf="@+id/easyStar5"
+                android:padding="5dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/easyStar5"
+                android:padding="5dp"
+                android:layout_alignParentRight="true"
+                />
+
+        </RelativeLayout>
+        <GridView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Solve Your Own"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            />
+            android:visibility="gone"
+            android:numColumns="5"
+            android:stretchMode="columnWidth"
+            android:id="@+id/easyGrid"/>
+
+
+
     </LinearLayout>
 
-    <ListView
+
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listview"
-        android:dividerHeight="20dp"
-        android:padding="10dp"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/mediumButton"
+        android:layout_margin="20dp"
+        android:background="@drawable/level_shape"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:id="@+id/mediumHeader"
+            android:clickable="true"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mediumText"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:textSize="20dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mediumStar1"
+                android:padding="5dp"
+                android:layout_toLeftOf="@+id/mediumStar2"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mediumStar2"
+                android:layout_toLeftOf="@+id/mediumStar3"
+                android:padding="5dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mediumStar3"
+                android:layout_toLeftOf="@+id/mediumStar4"
+                android:padding="5dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mediumStar4"
+                android:layout_toLeftOf="@+id/mediumStar5"
+                android:padding="5dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mediumStar5"
+                android:padding="5dp"
+                android:layout_alignParentRight="true"
+                />
+
+        </RelativeLayout>
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:numColumns="5"
+            android:stretchMode="columnWidth"
+            android:id="@+id/mediumGrid"/>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/hardButton"
+        android:layout_margin="20dp"
+        android:background="@drawable/level_shape"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:id="@+id/hardHeader"
+            android:clickable="true"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hardText"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:textSize="20dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hardStar1"
+                android:padding="5dp"
+                android:layout_toLeftOf="@+id/hardStar2"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hardStar2"
+                android:layout_toLeftOf="@+id/hardStar3"
+                android:padding="5dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hardStar3"
+                android:layout_toLeftOf="@+id/hardStar4"
+                android:padding="5dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hardStar4"
+                android:layout_toLeftOf="@+id/hardStar5"
+                android:padding="5dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hardStar5"
+                android:padding="5dp"
+                android:layout_alignParentRight="true"
+                />
+
+        </RelativeLayout>
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:numColumns="5"
+            android:stretchMode="columnWidth"
+            android:id="@+id/hardGrid"/>
+
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

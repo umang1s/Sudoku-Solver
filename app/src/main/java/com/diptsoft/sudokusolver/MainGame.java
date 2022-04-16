@@ -3,21 +3,27 @@ package com.diptsoft.sudokusolver;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.GridView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainGame extends AppCompatActivity {
-    String game;
+    private Sudoku game;
+    private GridView gameGrid;
+    private int[][] data;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        game=(Sudoku) getIntent().getSerializableExtra("game");
         setContentView(R.layout.activity_main_game);
-//        RelativeLayout main_layout=(RelativeLayout)findViewById(R.id.relativeLayout) ;
-//        toast(String.valueOf(main_layout.getMeasuredHeight()));
-//
-//        Button b1=new Button(this);
-//        b1.setText("Button");
-//        main_layout.addView(b1);
+        TextView textView=(TextView) findViewById(R.id.textview);
+        textView.setText(Integer.toString(game.getID()));
+        gameGrid=(GridView) findViewById(R.id.gameGrid);
+        gameGrid.setAdapter(new SudokuGridButton(data,this));
     }
+
+
 }

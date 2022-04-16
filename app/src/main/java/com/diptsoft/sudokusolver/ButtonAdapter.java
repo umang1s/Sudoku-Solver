@@ -1,13 +1,17 @@
 package com.diptsoft.sudokusolver;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,14 +47,14 @@ public class ButtonAdapter extends BaseAdapter {
         Sudoku sudoku=data.get(i);
         Button button=new Button(context);
         button.setText(Integer.toString(i+1));
-        int color= Color.YELLOW;
-        if(sudoku.getSolvedTime()==-1) color=0;
-        button.setBackgroundColor(color);
+        button.setPadding(5,5,5,5);
+        if(sudoku.getSolvedTime()!=-1) button.setTextColor(Color.YELLOW);
         button.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View view) {
-                Log.d("Levels",data.get(i).getGame());
+                Intent intent=new Intent(context,MainGame.class);
+                intent.putExtra("game",sudoku);
+                context.startActivity(intent);
             }
         });
         return button;
