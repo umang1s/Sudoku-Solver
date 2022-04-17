@@ -54,6 +54,7 @@ public class ButtonAdapter extends BaseAdapter {
             public void onClick(View view) {
                 Intent intent=new Intent(context,MainGame.class);
                 intent.putExtra("game",sudoku);
+                intent.putExtra("Editable",true);
                 context.startActivity(intent);
             }
         });
