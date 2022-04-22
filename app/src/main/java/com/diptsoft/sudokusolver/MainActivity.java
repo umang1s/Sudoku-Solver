@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void  launchEmptyGame(View view){
         Intent intent=new Intent(this,MainGame.class);
-        Sudoku sudoku=new Sudoku(0,"",-1,-1,"");
+        Sudoku sudoku=new Sudoku(0,".................................................................................",-1,-1,"");
         intent.putExtra("game",sudoku);
         intent.putExtra("Editable",true);
         startActivity(intent);
