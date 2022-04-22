@@ -76,6 +76,10 @@ public class Solution {
 
     public boolean solve(){
         counter=0;
+        for(int i=0; i<9; i++) for(int j=0; j<9; j++){
+            if(grid[i][j]!=0) vis[i][j]=false;
+            else vis[i][j]=true;
+        }
         return solving(0);
     }
 
@@ -93,7 +97,6 @@ public class Solution {
         return ret;
     }
 
-    public int getValue(int x,int y){return grid[x][y];}
 
     public boolean[][] getBooleanValue(){return vis;}
     public int[][] getGridValue(){return grid;}

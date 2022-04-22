@@ -1,7 +1,9 @@
 package com.diptsoft.sudokusolver;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -35,30 +37,36 @@ public class MainGame extends AppCompatActivity {
     private Sudoku game,solution;
     private boolean editable;
     private TextView timerText,avgText;
-    private MaterialButton solutionButton;
+    private MaterialButton solutionButton,resetButton;
     private ViewTreeObserver vto;
+    private AlertDialog dialog;
+    private int buttonClickedX,buttonClickedY;
     int timer;
     GameGrid gameGrid;
     Solution solver;
-    private boolean updating;
     private LinearLayout numpad;
+    private ArrayList<Integer> suggestion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         game=(Sudoku) getIntent().getSerializableExtra("game");
         timer=0;
-        updating=false;
         editable=getIntent().getBooleanExtra("Editable",false);
         solver=new Solution(game.getGame());
         setContentView(R.layout.activity_main_game);
         timerText=(TextView)findViewById(R.id.timer);
         avgText=(TextView)findViewById(R.id.avg_time);
         solutionButton=(MaterialButton)findViewById(R.id.solution_button);
+        resetButton=findViewById(R.id.reset_button);
         if(game.getAvgTime()!=-1) avgText.setText(getStringTime(game.getAvgTime()));
         else avgText.setVisibility(View.INVISIBLE);
-        if(editable) solutionButton.setVisibility(View.VISIBLE);
-        if(editable) startTimer();
+        if(editable){
+            solutionButton.setVisibility(View.VISIBLE);
+            startTimer();
+            if(game.getAvgTime()==-1) resetButton.setVisibility(View.VISIBLE);
+        }
         gameGrid=findViewById(R.id.game_grid);
         numpad=findViewById(R.id.num_pad);
 
@@ -73,20 +81,19 @@ public class MainGame extends AppCompatActivity {
         });
         if(editable){
             gameGrid.setOnTouchListener((view, motionEvent) -> {
-                if(!updating){
+                if(true){
                     float x=motionEvent.getX(),y=motionEvent.getY();
                     int[] location=new int[2];
                     view.getLocationOnScreen(location);
                     float width=view.getWidth();
                     if(y<=view.getWidth()){
                         float side=width/9;
-                        int X=(int) (x/side),Y= (int) (y/side);
-                        if(solver.isEditable(Y,X)) {
-                            int num=getNumber(Y,X);
-                            if(num!=-1 && num!=solver.getValue(Y,X)){
-                                gameGrid.update(X,Y,num);
-                                solver.set(X,Y,num);
-                            }
+                        int X=(int) (y/side),Y= (int) (x/side);
+                        if(solver.isEditable(X,Y)) {
+                            buttonClickedX=X;
+                            buttonClickedY=Y;
+                            suggestion=solver.getSuggetion(X,Y);
+                            showNumPad();
                         }
                     }
                 }
@@ -98,28 +105,17 @@ public class MainGame extends AppCompatActivity {
 
     }
 
-    public int getNumber (int x,int y){
-        updating=true;
-        Dialog dialog=new Dialog(this);
-
-        //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
+    public void showNumPad (){
         LayoutInflater m_inflater = LayoutInflater.from(this);
-        View m_view = m_inflater.inflate(R.layout.num_pad, null);
-        //myPopLay = (LinearLayout) m_view.findViewById(R.id.myPopLay);
-        dialog.setContentView(m_view);
+        View view = m_inflater.inflate(R.layout.num_pad, null);
+        dialog=new AlertDialog.Builder(this).setView(view).create();
         dialog.show();
-
-
-        updating=false;
-        return -1;
     }
 
 
     public void getSolutionButton(View view){
         if(editable){
             if(solver.solve()){
-                Log.d("sol",solver.getSolution());
                 solution=new Sudoku(game.getID(),solver.getSolution(),game.getAvgTime(),game.getSolvedTime(),game.getSubmittedSolution());
                 solver.reset();
                 Intent intent=new Intent(this,MainGame.class);
@@ -167,7 +163,36 @@ public class MainGame extends AppCompatActivity {
     }
 
     public void numButtonClicked(View view){
-        Log.d("Button Clicked",Integer.toString(view.getId()));
+        int num=0;
+        switch (view.getId()){
+            case R.id.num_pad0: num=0; break;
+            case R.id.num_pad1: num=1; break;
+            case R.id.num_pad2: num=2; break;
+            case R.id.num_pad3: num=3; break;
+            case R.id.num_pad4: num=4; break;
+            case R.id.num_pad5: num=5; break;
+            case R.id.num_pad6: num=6; break;
+            case R.id.num_pad7: num=7; break;
+            case R.id.num_pad8: num=8; break;
+            case R.id.num_pad9: num=9; break;
+            default:break;
+        }
+        boolean found=false;
+        if(num==0) found=true;
+        else for(int i=0; i<suggestion.size() && !found; i++) if(suggestion.get(i)==num) found=true;
+
+
+        if(found){
+            dialog.dismiss();
+            gameGrid.update(buttonClickedY,buttonClickedX,num);
+            solver.set(buttonClickedX,buttonClickedY,num);
+        }
+
+    }
+
+    public void resetGame(View view){
+        solver.reset();
+        gameGrid.reset();
     }
 
 }

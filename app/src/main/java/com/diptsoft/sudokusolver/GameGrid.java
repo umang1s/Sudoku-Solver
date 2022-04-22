@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 public class GameGrid extends View {
     private float width;
@@ -75,12 +76,13 @@ public class GameGrid extends View {
     }
 
     public void update(int x,int y,int val){
-        Log.d("Setting ","{ "+Integer.toString(x)+","+Integer.toString(y)+": "+Integer.toString(val)+"}");
         values[x][y]=val;
+        invalidate();
     }
 
-    public boolean onTouchEvent(MotionEvent event) {
+    public void reset(){
+        for(int i=0; i<9; i++) for(int j=0; j<9; j++) if(editable[i][j]) values[i][j]=0;
         invalidate();
-        return false;
     }
+
 }

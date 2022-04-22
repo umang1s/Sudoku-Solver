@@ -7,21 +7,31 @@
     android:orientation="vertical"
     tools:context=".MainGame">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:paddingHorizontal="20dp"
         android:background="@color/teal_200"
+        android:orientation="horizontal"
         android:layout_height="60dp">
 
         <TextView
             android:id="@+id/avg_time"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="05:00"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center"
+            android:paddingHorizontal="10dp"
+            android:textStyle="bold" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/reset_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:background="#ff00ff00"
+            app:cornerRadius="20dp"
+            android:visibility="gone"
+            android:paddingHorizontal="10dp"
+            android:onClick="resetGame" />
 
         <TextView
             android:id="@+id/timer"
@@ -29,11 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00:00"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/solution_button"
-            app:layout_constraintStart_toEndOf="@+id/avg_time"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:paddingHorizontal="10dp"
+            android:textStyle="bold" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/solution_button"
@@ -42,12 +49,10 @@
             android:text="Solution"
             android:background="#ff00ff00"
             app:cornerRadius="20dp"
+            android:paddingHorizontal="10dp"
             android:visibility="invisible"
-            android:onClick="getSolutionButton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:onClick="getSolutionButton" />
+    </LinearLayout>
     <com.diptsoft.sudokusolver.GameGrid
         android:layout_width="match_parent"
         android:id="@+id/game_grid"
